@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Biblioteca - BackLog Jogos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css?v=2">
+</head>
+<body>
+    <nav>
+        <h1>🎮 Minha Biblioteca</h1>
+        <div class="user-info">
+            <span id="welcomeMessage">Olá, Usuário</span>
+            <button onclick="logout()" class="btn-logout">Sair</button>
+        </div>
+    </nav>
+
+    <div class="container dashboard-container">
+        
+        <div class="card add-game-card">
+            <h3>Adicionar Novo Jogo</h3>
+            <form id="addGameForm">
+                <div class="form-row">
+                    <input type="url" id="imagem" placeholder="Link da Imagem (URL)" style="width: 100%;">
+                </div>
+                <div class="form-row">
+                    <input type="text" id="titulo" placeholder="Nome do Jogo" required>
+                    <input type="text" id="plataforma" placeholder="Plataforma (PC, PS5...)" required>
+                </div>
+                <div class="form-row">
+                    <select id="status">
+                        <option value="Backlog">Backlog (Na Fila)</option>
+                        <option value="Jogando">Jogando</option>
+                        <option value="Zerado">Zerado</option>
+                    </select>
+                    <select id="prioridade">
+                        <option value="Baixa">Prioridade Baixa</option>
+                        <option value="Média">Prioridade Média</option>
+                        <option value="Alta">Prioridade Alta</option>
+                    </select>
+                </div>
+                <button type="submit">➕ Adicionar Jogo</button>
+            </form>
+        </div>
+
+        <div id="gamesList" class="games-grid">
+            <p style="color: white;">Carregando jogos...</p>
+        </div>
+    </div>
+    <div id="modalEdicao" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fecharModal()">&times;</span>
+            <h3>✏️ Editar Jogo</h3>
+            
+            <form id="editGameForm">
+                <input type="hidden" id="editId"> <div class="form-row">
+                    <div class="input-group">
+                        <label>Link da Imagem</label>
+                        <input type="url" id="editImagem" placeholder="http://...">
+                    </div>
+                    <div class="input-group">
+                        <label>Status Atual</label>
+                        <select id="editStatus">
+                            <option value="Backlog">Backlog</option>
+                            <option value="Jogando">Jogando</option>
+                            <option value="Zerado">Zerado</option>
+                        </select>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>Nota (0-10)</label>
+                        <input type="number" id="editNota" min="0" max="10" step="0.5" placeholder="Sua nota">
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>Prioridade</label>
+                    <select id="editPrioridade">
+                        <option value="Baixa">Baixa</option>
+                        <option value="Média">Média</option>
+                        <option value="Alta">Alta</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn-save">Salvar Alterações</button>
+            </form>
+        </div>
+    </div>
+    <script src="dashboard.js?v=2"></script>
+</body>
+</html>
