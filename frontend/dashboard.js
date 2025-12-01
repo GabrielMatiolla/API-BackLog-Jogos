@@ -1,3 +1,13 @@
+const urlParams = new URLSearchParams(window.location.search);
+const tokenUrl = urlParams.get('token');
+const userUrl = urlParams.get('user');
+
+if (tokenUrl && userUrl) {
+    localStorage.setItem('token', tokenUrl);
+    localStorage.setItem('usuario', userUrl);
+    window.history.replaceState({}, document.title, window.location.pathname);
+}
+
 const token = localStorage.getItem('token');
 if (!token) {
     alert('Você precisa estar logado!');
@@ -18,7 +28,7 @@ async function carregarJogos() {
 
         const jogos = await response.json();
         const listaElement = document.getElementById('gamesList');
-        listaElement.innerHTML = ''; 
+        listaElement.innerHTML = '';
 
         if (jogos.length === 0) {
             listaElement.innerHTML = '<p style="color: #94a3b8; text-align: center; grid-column: 1/-1;">Nenhum jogo encontrado na sua biblioteca.</p>';
@@ -27,30 +37,26 @@ async function carregarJogos() {
 
         jogos.forEach(jogo => {
             const card = document.createElement('div');
-            card.className = 'game-card'; 
+            card.className = 'game-card';
             
             const imgUrl = jogo.imagem || DEFAULT_IMAGE;
-
             const imgTag = `<img src="${imgUrl}" class="game-img" onerror="this.src='${DEFAULT_IMAGE}'" alt="${jogo.titulo}">`;
-            
             const notaDisplay = jogo.nota ? `⭐ ${jogo.nota}/10` : 'Sem nota';
 
             card.innerHTML = `
                 ${imgTag}
-                
-                <div style="flex-grow: 1;"> <h4>${jogo.titulo}</h4>
-                    <span>🎮 ${jogo.plataforma}</span>
+                <div style="flex-grow: 1;">
+                    <h4>${jogo.titulo}</h4>
+                    <span> ${jogo.plataforma}</span>
                     <span class="status-badge status-${jogo.status}">${jogo.status}</span>
                     <span>Prioridade: ${jogo.prioridade || 'N/A'}</span>
                     <span style="font-weight:bold; color:#f59e0b; margin-top:5px; display:block">${notaDisplay}</span>
                 </div>
-                
                 <div style="margin-top: 15px; display: flex; gap: 10px;">
                     <button onclick='abrirModal(${JSON.stringify(jogo)})' class="btn-edit" style="flex:1">Editar</button>
                     <button onclick="deletarJogo(${jogo.id})" class="btn-delete" style="flex:1">Excluir</button>
                 </div>
             `;
-            
             listaElement.appendChild(card);
         });
 
@@ -66,7 +72,7 @@ document.getElementById('addGameForm').addEventListener('submit', async (e) => {
     const plataforma = document.getElementById('plataforma').value;
     const status = document.getElementById('status').value;
     const prioridade = document.getElementById('prioridade').value;
-    const imagem = document.getElementById('imagem').value; 
+    const imagem = document.getElementById('imagem').value;
 
     try {
         await fetch('http://localhost:3000/jogos', {
@@ -124,7 +130,6 @@ document.getElementById('editGameForm').addEventListener('submit', async (e) => 
     e.preventDefault();
 
     const id = document.getElementById('editId').value;
-
     const status = document.getElementById('editStatus').value;
     const prioridade = document.getElementById('editPrioridade').value;
     const nota = document.getElementById('editNota').value;

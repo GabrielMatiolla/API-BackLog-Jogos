@@ -198,3 +198,28 @@ nav {
     .dashboard-container { margin-top: 100px; }
     .games-grid { grid-template-columns: 1fr; }
 }
+.divider {
+    text-align: center;
+    margin: 15px 0;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.btn-github {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 12px;
+    background-color: #24292f;
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.3s;
+}
+
+.btn-github:hover {
+    background-color: #333;
+    text-decoration: none;
+}
