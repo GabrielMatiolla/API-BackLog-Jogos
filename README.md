@@ -71,4 +71,4 @@ O sistema atende aos seguintes requisitos:
 | DELETE | `/jogos/:id`       | Remove um jogo                     | Sim   |
 
 ---
-**Desenvolvido por Gabriel Matiolla.**
+**Desenvolvido por Gabriel Matiolla & Thiago Figuereido.**
