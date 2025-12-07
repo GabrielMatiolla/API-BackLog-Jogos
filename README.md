@@ -36,7 +36,8 @@ O sistema atende aos seguintes requisitos:
 
 1.  **Configurar o Banco de Dados:**
     * Abra o XAMPP e inicie o serviço **MySQL**.
-    * O Sequelize criará a tabela `backlog_games` automaticamente ao iniciar o servidor.
+    * Crie um novo Data Base com o nome de `backlog_games`.
+    * O Sequelize criará as tabelas do `backlog_games` automaticamente ao iniciar o servidor.
     * *Nota:* A configuração padrão espera o usuário `root` sem senha.
 
 2.  **Instalar dependências do Back-end:**
